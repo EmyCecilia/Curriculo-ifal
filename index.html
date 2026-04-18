@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Estudantil — Emily Cecilia</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f9f5fb;
+            --ink: #3b2240;
+            --primary: #A47DAB;
+            --accent: #c9a8d1;
+            --highlight: #e8d6ec;
+            --text-body: #4a2f52;
+            --muted: #8a6b90;
+            --card: #ffffff;
+            --border: #dccfe0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--ink);
+            padding: 0 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--highlight);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 1rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color .2s, color .2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        header {
+            background: var(--ink);
+            color: var(--highlight);
+            padding: 4rem 2rem 3.5rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .header-photo {
+            flex-shrink: 0;
+        }
+
+        .header-photo img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 3px solid var(--primary);
+            box-shadow: 8px 8px 0 var(--primary);
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .header-text h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            color: #fff;
+        }
+
+        .header-text h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .header-text h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: .6rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+        }
+
+        section,
+        aside {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: .8rem;
+        }
+
+        section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        #sobre {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        article p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-body);
+        }
+
+        #conhecimentos {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        ul.skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: .5rem;
+        }
+
+        ul.skills-list li {
+            background: var(--highlight);
+            border: 1px solid var(--accent);
+            border-radius: 3px;
+            padding: .35rem .9rem;
+            font-size: .85rem;
+            font-weight: 500;
+            color: var(--ink);
+            transition: background .2s, border-color .2s, color .2s;
+        }
+
+        ul.skills-list li:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        aside {
+            grid-column: 2;
+            grid-row: 1 / 3;
+            align-self: start;
+            position: sticky;
+            top: 56px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .aside-block p {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: .8rem;
+        }
+
+        .aside-block a {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            padding: .5rem 1.1rem;
+            border-radius: 3px;
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            transition: background .2s, transform .15s;
+        }
+
+        .aside-block a:hover {
+            background: var(--ink);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        footer {
+            background: var(--ink);
+            color: var(--highlight);
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+
+        footer h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: .4rem;
+        }
+
+        footer p {
+            font-size: .82rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 680px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                grid-column: 1;
+                grid-row: auto;
+                position: static;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#conhecimentos">Conhecimentos</a>
+        <a href="#curso">Curso</a>
+    </nav>
+
+    <header>
+        <div class="header-photo">
+            <img src="https://placehold.co/150x200/3b2240/e8d6ec?text=Sua+Foto"
+                alt="Foto de Emily Cecilia Souza da Silva" />
+        </div>
+        <div class="header-text">
+            <h1>Emily Cecilia <span>Souza da Silva</span></h1>
+            <h2>3º Período &mdash; Bacharelado em Sistemas de Informação</h2>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="sobre">
+            <p class="section-label">Quem sou eu</p>
+            <h2>Sobre Mim</h2>
+            <article>
+                <p>
+                    Olá! Meu nome é Emily Cecilia e sou estudante do curso de Sistemas de
+                    Informação no IFAL. Tenho grande interesse em tecnologia e adoro aprender
+                    sobre programação, Banco de Dados e Tecnologias Assistivas.
+                    No tempo livre, gosto de ler ensaios históricos — meus livros favoritos
+                    são <em>Autoritarismo Brasileiro</em>, de Lilia Schwarcz,
+                    e <em>1984</em>, de George Orwell. Também amo ir ao interior, à praia e
+                    explorar e testar as LLMs. Acredito que a tecnologia é uma poderosa
+                    ferramenta para transformar realidades, e é isso que me motiva a estudar
+                    cada dia mais.
+                </p>
+            </article>
+        </section>
+
+        <aside id="curso">
+            <div class="aside-block">
+                <p class="section-label">Instituição</p>
+                <p>
+                    O curso <strong>Bacharelado em Sistemas de Informação</strong> do
+                    Instituto Federal de Alagoas (IFAL) forma profissionais capazes de
+                    desenvolver sistemas e aplicações web, com foco em programação
+                    front-end, back-end, banco de dados e segurança da informação.
+                </p>
+                <a href="https://www2.ifal.edu.br" target="_blank" rel="noopener">
+                    Visitar site do IFAL ↗
+                </a>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="aside-block">
+                <p class="section-label">Contato</p>
+                <p>IFAL &mdash; Instituto Federal de Alagoas<br>Maceió, AL &mdash; Brasil</p>
+            </div>
+        </aside>
+
+        <section id="conhecimentos">
+            <p class="section-label">Habilidades em desenvolvimento</p>
+            <h2>Conhecimentos</h2>
+            <ul class="skills-list">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Lógica de Programação</li>
+                <li>Algoritmos</li>
+                <li>Banco de Dados (SQL)</li>
+                <li>JavaScript (básico)</li>
+                <li>Git &amp; GitHub</li>
+                <li>Redes de Computadores</li>
+                <li>Sistemas Operacionais Linux</li>
+                <li>Metodologias Ágeis</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>Data de Nascimento: <strong>05 de março de 2004</strong></h3>
+        <p style="margin-top:1rem; font-size:.75rem; opacity:.5;">
+            &copy; 2025 &mdash; Página acadêmica desenvolvida para o IFAL
+        </p>
+    </footer>
+
+</body>
+
+</html>
