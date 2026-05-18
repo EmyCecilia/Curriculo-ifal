@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Página acadêmica de Emily Cecilia Souza da Silva — estudante de Sistemas de Informação no IFAL." />
     <title>Perfil Estudantil — Emily Cecilia</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <style>
+
         :root {
             --bg: #f9f5fb;
             --ink: #3b2240;
@@ -19,8 +22,13 @@
             --muted: #8a6b90;
             --card: #ffffff;
             --border: #dccfe0;
+
+            --radius: 6px;
+            --transition: .2s ease;
+            --shadow-card: 0 2px 12px rgba(59, 34, 64, .07);
         }
 
+   
         *,
         *::before,
         *::after {
@@ -38,9 +46,31 @@
             background: var(--bg);
             color: var(--text-body);
             min-height: 100vh;
+            /* Suaviza renderização de texto */
+            -webkit-font-smoothing: antialiased;
         }
 
-        nav {
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--ink);
+            color: var(--highlight);
+            padding: .5rem 1rem;
+            border-radius: var(--radius);
+            font-size: .85rem;
+            font-weight: 600;
+            z-index: 999;
+            transition: top var(--transition);
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+
+        .nav-main {
             position: sticky;
             top: 0;
             z-index: 100;
@@ -48,27 +78,31 @@
             padding: 0 2rem;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             gap: 2rem;
         }
 
-        nav a {
+        .nav-main a {
             color: var(--highlight);
             text-decoration: none;
-            font-size: 0.78rem;
+            font-size: .78rem;
             font-weight: 500;
             letter-spacing: .12em;
             text-transform: uppercase;
             padding: 1rem 0;
             border-bottom: 2px solid transparent;
-            transition: border-color .2s, color .2s;
+            transition: border-color var(--transition), color var(--transition);
         }
 
-        nav a:hover {
+        .nav-main a:hover,
+        .nav-main a:focus-visible {
             color: var(--accent);
             border-bottom-color: var(--accent);
+            outline: none;
         }
 
-        header {
+   
+        .site-header {
             background: var(--ink);
             color: var(--highlight);
             padding: 4rem 2rem 3.5rem;
@@ -89,6 +123,7 @@
             border-radius: 4px;
             border: 3px solid var(--primary);
             box-shadow: 8px 8px 0 var(--primary);
+            user-select: none;
         }
 
         .header-text {
@@ -104,14 +139,10 @@
             color: #fff;
         }
 
-        .header-text h1 span {
-            color: var(--accent);
-            font-style: italic;
-        }
 
-        .header-text h2 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
+
+        .header-text .subtitle {
+            font-size: .9rem;
             font-weight: 400;
             letter-spacing: .1em;
             text-transform: uppercase;
@@ -119,7 +150,7 @@
             margin-top: .6rem;
         }
 
-        main {
+        .page-main {
             max-width: 900px;
             margin: 0 auto;
             padding: 3rem 1.5rem 4rem;
@@ -129,16 +160,16 @@
             gap: 2rem;
         }
 
-        section,
-        aside {
+        .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: var(--radius);
             padding: 2rem;
+            box-shadow: var(--shadow-card);
         }
 
         .section-label {
-            font-size: 0.7rem;
+            font-size: .7rem;
             font-weight: 600;
             letter-spacing: .18em;
             text-transform: uppercase;
@@ -146,7 +177,7 @@
             margin-bottom: .8rem;
         }
 
-        section h2 {
+        .section-title {
             font-family: 'DM Serif Display', serif;
             font-size: 1.5rem;
             margin-bottom: 1rem;
@@ -158,7 +189,7 @@
             grid-row: 1;
         }
 
-        article p {
+        #sobre article p {
             font-size: 1rem;
             line-height: 1.8;
             color: var(--text-body);
@@ -169,7 +200,7 @@
             grid-row: 2;
         }
 
-        ul.skills-list {
+        .skills-list {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
@@ -177,7 +208,7 @@
             margin-top: .5rem;
         }
 
-        ul.skills-list li {
+        .skills-list li {
             background: var(--highlight);
             border: 1px solid var(--accent);
             border-radius: 3px;
@@ -185,16 +216,20 @@
             font-size: .85rem;
             font-weight: 500;
             color: var(--ink);
-            transition: background .2s, border-color .2s, color .2s;
+            transition:
+                background var(--transition),
+                border-color var(--transition),
+                color var(--transition);
+            cursor: default;
         }
 
-        ul.skills-list li:hover {
+        .skills-list li:hover {
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
         }
 
-        aside {
+        .page-aside {
             grid-column: 2;
             grid-row: 1 / 3;
             align-self: start;
@@ -212,7 +247,7 @@
             margin-bottom: .8rem;
         }
 
-        .aside-block a {
+        .btn-primary {
             display: inline-block;
             background: var(--primary);
             color: #fff;
@@ -222,12 +257,14 @@
             font-size: .82rem;
             font-weight: 600;
             letter-spacing: .05em;
-            transition: background .2s, transform .15s;
+            transition: background var(--transition), transform var(--transition);
         }
 
-        .aside-block a:hover {
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
             background: var(--ink);
             transform: translateY(-2px);
+            outline: none;
         }
 
         .divider {
@@ -235,14 +272,14 @@
             border-top: 1px solid var(--border);
         }
 
-        footer {
+        .site-footer {
             background: var(--ink);
             color: var(--highlight);
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 2.5rem 1rem 3rem;
         }
 
-        footer h3 {
+        .site-footer .birth {
             font-family: 'DM Serif Display', serif;
             font-size: 1rem;
             font-weight: 400;
@@ -250,24 +287,130 @@
             margin-bottom: .4rem;
         }
 
-        footer p {
-            font-size: .82rem;
+        .site-footer .copyright {
+            font-size: .75rem;
             color: var(--muted);
+            opacity: .6;
+            margin-top: 1rem;
+        }
+
+        .chapter-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(169, 125, 171, .3);
+        }
+
+        .chapter-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .activities-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .8rem;
+            margin-top: 1rem;
+        }
+
+        .activities-list li a {
+            display: inline-block;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            padding: .45rem 1rem;
+            border-radius: 4px;
+            font-size: .82rem;
+            font-weight: 500;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .activities-list li a:hover,
+        .activities-list li a:focus-visible {
+            background: var(--accent);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .footer-chapter-nav {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(169, 125, 171, .3);
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-chapter-nav h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .footer-chapter-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .7rem;
+        }
+
+        .footer-chapter-nav ul li a {
+            display: inline-block;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            padding: .45rem 1rem;
+            border-radius: 4px;
+            font-size: .82rem;
+            font-weight: 500;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .footer-chapter-nav ul li a:hover,
+        .footer-chapter-nav ul li a:focus-visible {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            outline: none;
         }
 
         @media (max-width: 680px) {
-            main {
+            .page-main {
                 grid-template-columns: 1fr;
             }
 
-            aside {
+            .page-aside {
                 grid-column: 1;
                 grid-row: auto;
                 position: static;
             }
 
-            header {
+            .site-header {
                 flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-main {
+                justify-content: center;
+                gap: 1.2rem;
+            }
+
+            .activities-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .activities-list li a {
+                display: block;
+                width: 200px;
                 text-align: center;
             }
         }
@@ -276,34 +419,38 @@
 
 <body>
 
-    <nav>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+
+    <nav class="nav-main" aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#conhecimentos">Conhecimentos</a>
         <a href="#curso">Curso</a>
     </nav>
 
-    <header>
+    <header class="site-header">
         <div class="header-photo">
             <img src="https://placehold.co/150x200/3b2240/e8d6ec?text=Sua+Foto"
-                alt="Foto de Emily Cecilia Souza da Silva" />
+                alt="Foto de Emily Cecilia Souza da Silva" width="150" height="200" loading="eager" />
         </div>
         <div class="header-text">
             <h1>Emily Cecilia <span>Souza da Silva</span></h1>
-            <h2>3º Período &mdash; Bacharelado em Sistemas de Informação</h2>
+            <p class="subtitle" aria-label="Curso e período">
+                3º Período &mdash; Bacharelado em Sistemas de Informação
+            </p>
         </div>
     </header>
 
-    <main>
+    <main class="page-main" id="main-content">
 
-        <section id="sobre">
+        <section id="sobre" class="card" aria-labelledby="titulo-sobre">
             <p class="section-label">Quem sou eu</p>
-            <h2>Sobre Mim</h2>
+            <h2 class="section-title" id="titulo-sobre">Sobre Mim</h2>
             <article>
                 <p>
                     Olá! Meu nome é Emily Cecilia e sou estudante do curso de Sistemas de
                     Informação no IFAL. Tenho grande interesse em tecnologia e adoro aprender
                     sobre programação, Banco de Dados e Tecnologias Assistivas.
-                    No tempo livre, gosto de ler ensaios históricos — meus livros favoritos
+                    No tempo livre, gosto de ler ensaios históricos &mdash; meus livros favoritos
                     são <em>Autoritarismo Brasileiro</em>, de Lilia Schwarcz,
                     e <em>1984</em>, de George Orwell. Também amo ir ao interior, à praia e
                     explorar e testar as LLMs. Acredito que a tecnologia é uma poderosa
@@ -313,7 +460,7 @@
             </article>
         </section>
 
-        <aside id="curso">
+        <aside id="curso" class="card page-aside" aria-label="Informações do curso e contato">
             <div class="aside-block">
                 <p class="section-label">Instituição</p>
                 <p>
@@ -322,7 +469,7 @@
                     desenvolver sistemas e aplicações web, com foco em programação
                     front-end, back-end, banco de dados e segurança da informação.
                 </p>
-                <a href="https://www2.ifal.edu.br" target="_blank" rel="noopener">
+                <a class="btn-primary" href="https://www2.ifal.edu.br" target="_blank" rel="noopener noreferrer">
                     Visitar site do IFAL ↗
                 </a>
             </div>
@@ -331,14 +478,14 @@
 
             <div class="aside-block">
                 <p class="section-label">Contato</p>
-                <p>IFAL &mdash; Instituto Federal de Alagoas<br>Maceió, AL &mdash; Brasil</p>
+                <p>IFAL &mdash; Instituto Federal de Alagoas<br />Maceió, AL &mdash; Brasil</p>
             </div>
         </aside>
 
-        <section id="conhecimentos">
+        <section id="conhecimentos" class="card" aria-labelledby="titulo-conhecimentos">
             <p class="section-label">Habilidades em desenvolvimento</p>
-            <h2>Conhecimentos</h2>
-            <ul class="skills-list">
+            <h2 class="section-title" id="titulo-conhecimentos">Conhecimentos</h2>
+            <ul class="skills-list" aria-label="Lista de habilidades">
                 <li>HTML5</li>
                 <li>CSS3</li>
                 <li>Lógica de Programação</li>
@@ -354,11 +501,51 @@
 
     </main>
 
-    <footer>
-        <h3>Data de Nascimento: <strong>05 de março de 2004</strong></h3>
-        <p style="margin-top:1rem; font-size:.75rem; opacity:.5;">
-            &copy; 2025 &mdash; Página acadêmica desenvolvida para o IFAL
+
+    <footer class="site-footer">
+
+     
+        <p class="birth">
+            Data de Nascimento: <strong><time datetime="2004-03-05">05 de março de 2004</time></strong>
         </p>
+        <p class="copyright">&copy; 2025 &mdash; Página acadêmica desenvolvida para o IFAL</p>
+
+
+        <nav class="footer-chapter-nav" aria-label="Sumário do Capítulo 4">
+            <h2>Capítulo 4 &mdash; Tabelas, Listas e Mídia</h2>
+            <ul>
+                <li><a href="cap04/at01.html">Atividade 1 &mdash; Tabela Básica</a></li>
+                <li><a href="cap04/at02.html">Atividade 2 &mdash; Tabela Semântica com Mesclagem</a></li>
+                <li><a href="cap04/at03.html">Atividade 3 &mdash; Listas Avançadas e Glossário</a></li>
+                <li><a href="cap04/at04.html">Atividade 4 &mdash; Página Multimídia</a></li>
+            </ul>
+        </nav>
+
+        </section>
+
+      
+        <nav class="footer-chapter-nav" aria-label="Sumário do Capítulo 5">
+            <h2>Capítulo 5 &mdash; Formulários HTML </h2>
+                <ul class="activities-list">
+                    <li><a href="cap05/at01.html">AT01 — Formulário de Contato</a></li>
+                    <li><a href="cap05/at02.html">AT02 — Cadastro de Usuário</a></li>
+                    <li><a href="cap05/at03.html">AT03 — Matrícula Acadêmica</a></li>
+                    <li><a href="cap05/at04.html">AT04 — Inscrição em Evento</a></li>
+                </ul>
+            </nav>
+        <nav class="footer-chapter-nav" aria-label="Sumário do Capítulo 7">
+            <h2>Capítulo 7 &mdash; Fundamentos do Css</h2>
+            <ul>
+                <li><a href="cap07/at01.html">AT01 — Cartão de Apresentação </a></li>
+                <li><a href="cap07/at02.html">AT02 — Artigo Tipográfico</a></li>
+                <li><a href="cap07/at03.html">AT03 — Galeria de Seletores </a></li>
+                <li><a href="cap07/at04.html">AT04 — Página com Posicionamento</a></li>
+                <li><a href="cap07/at05.html">AT05 — Mini Design System </a></li>
+
+            </ul>
+        </nav>
+
+
     </footer>
 
 </body>

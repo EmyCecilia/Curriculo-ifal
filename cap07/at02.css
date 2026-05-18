@@ -1,0 +1,166 @@
+/* ══════════════════════════════════════════════
+   AT02 — Artigo Tipográfico
+   PWEB1 — Cap. 07 — Emily Cecilia Souza da Silva
+   ══════════════════════════════════════════════ */
+
+/* ── RESET ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── BASE ────────────────────────────────────
+   font-size: 16px como base para todos os cálculos rem
+*/
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    line-height: 1.75;
+    background-color: #f9f5fb;
+    color: #4a2f52;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── CONTAINER ───────────────────────────────
+   max-width entre 600–800px, centralizado com margin: 0 auto
+   padding em rem para respiro interno
+*/
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+/* ── CABEÇALHO DO SITE (link de volta) ─────── */
+.site-header {
+    background-color: #3b2240;
+    padding: 1rem 2rem;
+    margin-bottom: 0;
+}
+
+.site-header a {
+    color: #c9a8d1;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    transition: color .2s;
+}
+
+.site-header a:hover {
+    color: #fff;
+}
+
+/* ── CABEÇALHO DO ARTIGO ────────────────────── */
+.article-header {
+    padding: 3rem 0 2rem;
+    background-color: transparent;
+    border-bottom: 1px solid #dccfe0;
+    margin-bottom: 2rem;
+}
+
+.article-header .label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #A47DAB;
+    margin-bottom: 0.75rem;
+}
+
+/* ── H1 ──────────────────────────────────────
+   font-size ≥ 2rem em rem, font-weight, margin-bottom em rem
+*/
+h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #3b2240;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    margin-bottom: 1rem;
+}
+
+.article-header .meta {
+    font-size: 0.875rem;
+    color: #8a6b90;
+    margin-top: .5rem;
+}
+
+/* ── H2 ──────────────────────────────────────
+   font-size entre 1.25rem e 1.75rem em rem
+   margin-top e margin-bottom em rem
+*/
+h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #3b2240;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+/* ── PARÁGRAFOS ──────────────────────────────
+   margin-bottom em rem, font-size: 1rem
+*/
+p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    color: #4a2f52;
+}
+
+/* ── BLOCKQUOTE ──────────────────────────────
+   border-left ≥ 4px, padding-left em rem,
+   font-style: italic, color diferente do texto principal
+*/
+blockquote {
+    border-left: 5px solid #A47DAB;
+    padding: 1rem 0 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #8a6b90;
+    background-color: #f0eaf4;
+    border-radius: 0 6px 6px 0;
+}
+
+blockquote p {
+    font-size: 1.1rem;
+    margin-bottom: .3rem;
+    color: #8a6b90;
+}
+
+blockquote cite {
+    font-size: 0.82rem;
+    font-style: normal;
+    font-weight: 600;
+    color: #A47DAB;
+}
+
+/* ── FOOTER DO ARTIGO ────────────────────────
+   padding em rem, background-color diferente do body
+*/
+.article-footer {
+    padding: 1.5rem 1.5rem;
+    background-color: #3b2240;
+    border-radius: 6px;
+    margin-top: 3rem;
+    color: #c9a8d1;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.article-footer strong {
+    color: #e8d6ec;
+}
+
+em {
+    color: #A47DAB;
+    font-style: italic;
+}

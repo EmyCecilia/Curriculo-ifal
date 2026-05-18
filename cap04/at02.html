@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notas Bimestrais — Cap. 4 / Ativ. 2</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f9f5fb;
+            --ink: #3b2240;
+            --primary: #A47DAB;
+            --accent: #c9a8d1;
+            --highlight: #e8d6ec;
+            --text-body: #4a2f52;
+            --muted: #8a6b90;
+            --card: #ffffff;
+            --border: #dccfe0;
+            --pass: #d4edda;
+            --fail: #f8d7da;
+            --pass-text: #155724;
+            --fail-text: #721c24;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--ink);
+            color: var(--highlight);
+            padding: 3rem 2rem 2.5rem;
+        }
+
+        header p.breadcrumb {
+            font-size: .75rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .8rem;
+        }
+
+        header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: #fff;
+            line-height: 1.15;
+        }
+
+        header h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        header p.subtitle {
+            margin-top: .5rem;
+            font-size: .88rem;
+            color: var(--accent);
+            letter-spacing: .06em;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: .6rem;
+        }
+
+        /* ── TABLE ── */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .875rem;
+        }
+
+        caption {
+            caption-side: top;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            color: var(--ink);
+            text-align: left;
+            padding-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        /* ── THEAD ── */
+        thead tr:first-child th {
+            background: var(--ink);
+            color: var(--highlight);
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, .08);
+            text-align: center;
+        }
+
+        thead tr:first-child th:first-child,
+        thead tr:first-child th:last-child {
+            text-align: left;
+        }
+
+        /* Subgrupo "Bimestres" */
+        thead tr:nth-child(2) th {
+            background: var(--highlight);
+            color: var(--ink);
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .6rem 1rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        /* ── TBODY ── */
+        tbody th {
+            padding: .75rem 1rem;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--ink);
+            background: #faf7fc;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: .75rem 1rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-body);
+        }
+
+        tbody tr:nth-child(even) td {
+            background: #faf7fc;
+        }
+
+        tbody tr:hover td,
+        tbody tr:hover th {
+            background: var(--highlight);
+            transition: background .15s;
+        }
+
+        /* Nota aprovado/reprovado */
+        td.ok {
+            color: var(--pass-text);
+            background: var(--pass) !important;
+            font-weight: 600;
+        }
+
+        td.fail {
+            color: var(--fail-text);
+            background: var(--fail) !important;
+            font-weight: 600;
+        }
+
+        /* ── TFOOT ── */
+        tfoot td,
+        tfoot th {
+            background: var(--ink);
+            color: var(--accent);
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            padding: .8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, .08);
+            text-align: center;
+        }
+
+        tfoot th {
+            text-align: left;
+        }
+
+        /* ── LEGENDA ── */
+        .legend {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .legend .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-ok {
+            background: var(--pass-text);
+        }
+
+        .dot-fail {
+            background: var(--fail-text);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: .85rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            padding: .6rem 1.1rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: background .2s, color .2s;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        footer {
+            background: var(--ink);
+            color: var(--muted);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: .8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p class="breadcrumb">Cap. 4 &mdash; Atividade 2</p>
+        <h1>Notas <span>Bimestrais</span></h1>
+        <p class="subtitle">Turma SI-2025 &mdash; Sistemas de Informação</p>
+    </header>
+
+    <main>
+        <div class="card">
+            <p class="section-label">Desempenho da turma</p>
+
+            <div class="table-wrapper">
+          
+       
+                <table>
+                    <caption>Notas Bimestrais — Turma SI-2025, 2025</caption>
+
+                    <thead>
+                      
+                        <tr>
+                            <th scope="col" rowspan="2">Aluno</th>
+                            <th scope="colgroup" colspan="4">Bimestres</th>
+                            <th scope="col" rowspan="2">Média Final</th>
+                        </tr>
+                  
+                        <tr>
+                            <th scope="col">1º Bimestre</th>
+                            <th scope="col">2º Bimestre</th>
+                            <th scope="col">3º Bimestre</th>
+                            <th scope="col">4º Bimestre</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Ana Beatriz Lima</th>
+                            <td class="ok">8.5</td>
+                            <td class="ok">9.0</td>
+                            <td class="ok">7.8</td>
+                            <td class="ok">8.2</td>
+                            <td class="ok">8.4</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Carlos Eduardo Santos</th>
+                            <td class="ok">7.0</td>
+                            <td class="fail">4.5</td>
+                            <td class="ok">6.5</td>
+                            <td class="ok">7.5</td>
+                            <td class="fail">6.4</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Diana Ferreira Costa</th>
+                            <td class="ok">9.5</td>
+                            <td class="ok">9.0</td>
+                            <td class="ok">9.8</td>
+                            <td class="ok">9.2</td>
+                            <td class="ok">9.4</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Felipe Andrade Melo</th>
+                            <td class="fail">3.5</td>
+                            <td class="ok">5.5</td>
+                            <td class="fail">4.0</td>
+                            <td class="ok">6.0</td>
+                            <td class="fail">4.8</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Gabriela Rocha Nunes</th>
+                            <td class="ok">8.0</td>
+                            <td class="ok">7.5</td>
+                            <td class="ok">8.5</td>
+                            <td class="ok">9.0</td>
+                            <td class="ok">8.3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Hugo Cavalcante Dias</th>
+                            <td class="ok">6.5</td>
+                            <td class="ok">7.0</td>
+                            <td class="fail">4.5</td>
+                            <td class="ok">6.0</td>
+                            <td class="fail">6.0</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th scope="row">Média da turma</th>
+                            <td>7.2</td>
+                            <td>7.1</td>
+                            <td>6.9</td>
+                            <td>7.7</td>
+                            <td>7.2</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="legend">
+                <span><span class="dot dot-ok"></span> Aprovado (≥ 7.0)</span>
+                <span><span class="dot dot-fail"></span> Recuperação (&lt; 7.0)</span>
+            </div>
+        </div>
+
+        <a class="back-link" href="../index.html">&#8592; Voltar à página principal</a>
+    </main>
+
+    <footer>
+        <p>Cap. 4 / Ativ. 2 &mdash; Emily Cecilia Souza da Silva &mdash; IFAL &mdash; 2025</p>
+    </footer>
+
+</body>
+
+</html>

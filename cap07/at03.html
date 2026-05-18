@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWEB1 — Cap. 07 — AT03 — Galeria de Seletores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="at03.css" />
+</head>
+
+<body>
+
+    <header>
+        <h1>Galeria de Seletores CSS</h1>
+        <p><a href="../index.html">&#8592; Voltar para a página principal</a></p>
+    </header>
+
+    <main>
+
+        <!-- ══ SEÇÃO 1: Seletores de atributo ══ -->
+        <section id="sec-atributo">
+            <h2>Seletores de Atributo</h2>
+            <p class="desc">Cada tipo de link recebe estilo distinto com base no valor do atributo <code>href</code> ou
+                <code>target</code>.</p>
+            <ul>
+                <li><a href="https://ifal.edu.br">Site do IFAL</a></li>
+                <li><a href="http://exemplo.com">Link não seguro</a></li>
+                <li><a href="relatorio.pdf">Baixar relatório</a></li>
+                <li><a href="#ancora">Âncora interna</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            </ul>
+        </section>
+
+        <!-- ══ SEÇÃO 2: Pseudo-classes estruturais ══ -->
+        <section id="sec-estrutural">
+            <h2>Pseudo-classes Estruturais</h2>
+            <p class="desc">Estilização baseada na posição dos itens na lista: primeiro, último, pares, ímpares e
+                terceiro.</p>
+            <ol>
+                <li>Primeiro item</li>
+                <li>Segundo item</li>
+                <li>Terceiro item</li>
+                <li>Quarto item</li>
+                <li>Quinto item</li>
+                <li>Sexto item</li>
+            </ol>
+        </section>
+
+        <section id="sec-estado">
+            <h2>Pseudo-classes de Estado</h2>
+            <p class="desc">Interaja com os campos para observar :focus, :valid, :invalid, :disabled e :checked.</p>
+            <form novalidate>
+                <label for="nome-03">Nome:</label>
+                <input type="text" id="nome-03" name="nome" required placeholder="Seu nome" />
+
+                <label for="email-03">E-mail:</label>
+                <input type="email" id="email-03" name="email" required placeholder="usuario@dominio.com" />
+
+                <label for="obs-03">Observações (opcional):</label>
+                <input type="text" id="obs-03" name="obs" placeholder="Campo opcional" />
+
+                <label for="cidade-03">Cidade:</label>
+                <input type="text" id="cidade-03" name="cidade" disabled value="Maceió" />
+
+                <label class="label-check">
+                    <input type="checkbox" name="aceite-03" />
+                    Concordo com os termos
+                </label>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <section id="sec-pseudoelemento">
+            <h2>Pseudo-elementos</h2>
+            <p class="desc">Conteúdo gerado com ::before e ::after, seleção de texto e placeholder estilizados.</p>
+            <p class="citacao">A Web é para todos.</p>
+            <p class="obrigatorio">Este campo é obrigatório.</p>
+            <p class="destaque-selecao">Selecione este texto com o mouse para ver o ::selection personalizado.</p>
+            <input type="text" class="input-custom" placeholder="Digite algo aqui..." />
+        </section>
+
+        <section id="sec-combinadores">
+            <h2>Combinadores e :not()</h2>
+            <p class="desc">Seletor irmão adjacente <code>h3 + p</code> e <code>:not(.ativo)</code> para filtrar itens.
+            </p>
+            <h3>Título do bloco A</h3>
+            <p>Parágrafo imediatamente após o título — deve ter estilo diferenciado.</p>
+            <p>Segundo parágrafo — estilo padrão.</p>
+            <p>Terceiro parágrafo — estilo padrão.</p>
+            <ul>
+                <li class="ativo">Item ativo</li>
+                <li>Item inativo</li>
+                <li class="ativo">Item ativo</li>
+                <li>Item inativo</li>
+                <li class="ativo">Item ativo</li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

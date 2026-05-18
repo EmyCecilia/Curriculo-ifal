@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listas Avançadas e Glossário — Cap. 4 / Ativ. 3</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f9f5fb;
+            --ink: #3b2240;
+            --primary: #A47DAB;
+            --accent: #c9a8d1;
+            --highlight: #e8d6ec;
+            --text-body: #4a2f52;
+            --muted: #8a6b90;
+            --card: #ffffff;
+            --border: #dccfe0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        /* ── NAV ── */
+        nav.toc {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--ink);
+            padding: .9rem 2rem;
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        nav.toc a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color .2s, color .2s;
+        }
+
+        nav.toc a:hover {
+            color: #fff;
+            border-bottom-color: var(--accent);
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: var(--ink);
+            color: var(--highlight);
+            padding: 3rem 2rem 2.5rem;
+        }
+
+        header p.breadcrumb {
+            font-size: .75rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .8rem;
+        }
+
+        header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: #fff;
+            line-height: 1.15;
+        }
+
+        header h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        header p.subtitle {
+            margin-top: .5rem;
+            font-size: .88rem;
+            color: var(--accent);
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-label {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: .5rem;
+        }
+
+        .card h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 1.2rem;
+        }
+
+        .card p {
+            font-size: .9rem;
+            color: var(--text-body);
+            margin-bottom: 1rem;
+        }
+
+        .card p.transition {
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            color: var(--muted);
+            font-style: italic;
+            margin: 1.2rem 0;
+        }
+
+        /* ── LISTAS ORDENADAS ── */
+        ol.roteiro {
+            padding-left: 1.6rem;
+            margin-bottom: .8rem;
+        }
+
+        ol.roteiro>li {
+            padding: .4rem 0 .4rem .4rem;
+            color: var(--text-body);
+        }
+
+        ol.roteiro>li::marker {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Subitens com letras */
+        ol.sub {
+            list-style-type: lower-alpha;
+            margin-top: .4rem;
+            margin-bottom: .2rem;
+            padding-left: 1.6rem;
+        }
+
+        ol.sub li {
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        ol.sub li::marker {
+            color: var(--accent);
+        }
+
+        /* ── RANKING REVERSO ── */
+        ol.ranking {
+            list-style: none;
+            padding: 0;
+            counter-reset: rank-counter 6;
+            margin-bottom: .5rem;
+        }
+
+        ol.ranking li {
+            counter-increment: rank-counter -1;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: .9rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        ol.ranking li:last-child {
+            border-bottom: none;
+        }
+
+        .rank-badge {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--ink);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        /* 1ª colocada destaque */
+        ol.ranking li:last-child .rank-badge {
+            background: var(--primary);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            font-size: 1.15rem;
+        }
+
+        .rank-content strong {
+            display: block;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .rank-content p {
+            font-size: .85rem;
+            margin: .2rem 0 0;
+        }
+
+        /* ── GLOSSÁRIO ── */
+        dl.glossary {
+            margin-top: .5rem;
+        }
+
+        dl.glossary dt {
+            display: inline-block;
+            background: var(--ink);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: .08em;
+            padding: .2rem .7rem;
+            border-radius: 3px;
+            margin-top: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        dl.glossary dt+dt {
+            margin-top: .3rem;
+        }
+
+        /* Sinônimos consecutivos */
+        dl.glossary dd {
+            padding-left: 1.2rem;
+            font-size: .88rem;
+            color: var(--text-body);
+            border-left: 2px solid var(--accent);
+            margin-bottom: .2rem;
+        }
+
+        /* Múltiplos dd para um dt */
+        dl.glossary dd+dd {
+            margin-top: .2rem;
+        }
+
+        /* ── MAPA DE TECNOLOGIAS (LISTA ANINHADA) ── */
+        ul.tree {
+            list-style: none;
+            padding: 0;
+            font-size: .9rem;
+        }
+
+        /* Nível 1 */
+        ul.tree>li {
+            padding: .5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        ul.tree>li:last-child {
+            border-bottom: none;
+        }
+
+        ul.tree>li>strong {
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Subnível genérico */
+        ul.tree ul {
+            list-style: none;
+            padding-left: 1.4rem;
+            margin-top: .4rem;
+        }
+
+        ul.tree ul li {
+            padding: .25rem 0;
+            position: relative;
+        }
+
+        ul.tree ul li::before {
+            content: "├ ";
+            color: var(--accent);
+            font-size: .85rem;
+        }
+
+        ul.tree ul li:last-child::before {
+            content: "└ ";
+        }
+
+        /* Rótulos de categoria (Frontend, Backend…) */
+        ul.tree ul>li>span.cat {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Folhas (HTML, CSS…) */
+        ul.tree ul ul li::before {
+            color: var(--border);
+        }
+
+        ul.tree ul ul li {
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* ── BACK & FOOTER ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: .85rem;
+            font-weight: 600;
+            padding: .6rem 1.1rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: background .2s, color .2s;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        footer {
+            background: var(--ink);
+            color: var(--muted);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: .8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="toc" aria-label="Seções da atividade">
+        <a href="#roteiro">Roteiro</a>
+        <a href="#ranking">Ranking</a>
+        <a href="#glossario">Glossário</a>
+        <a href="#mapa">Mapa</a>
+    </nav>
+
+    <header>
+        <p class="breadcrumb">Cap. 4 &mdash; Atividade 3</p>
+        <h1>Listas <span>Avançadas</span> &amp; Glossário</h1>
+        <p class="subtitle">Guia de referência para ingressantes em Sistemas de Informação</p>
+    </header>
+
+    <main>
+
+      
+        <section id="roteiro" class="card">
+            <p class="section-label">Seção 1</p>
+            <h2>Roteiro de Estudos</h2>
+
+            <p><strong>Etapa 1 — Fundamentos (semanas 1–3)</strong></p>
+            <ol class="roteiro" type="1" start="1">
+                <li>
+                    Introdução à lógica de programação
+                    <ol class="sub" type="a">
+                        <li>Variáveis e tipos de dados</li>
+                        <li>Operadores aritméticos e lógicos</li>
+                    </ol>
+                </li>
+                <li>
+                    Estruturas de controle
+                    <ol class="sub" type="a">
+                        <li>Condicionais: if / else / switch</li>
+                        <li>Laços: for, while, do-while</li>
+                    </ol>
+                </li>
+                <li>
+                    Funções e modularização
+                    <ol class="sub" type="a">
+                        <li>Declaração e invocação de funções</li>
+                        <li>Escopo de variáveis</li>
+                    </ol>
+                </li>
+            </ol>
+
+            <p class="transition">
+                Com os fundamentos consolidados, passamos à etapa intermediária, que aprofunda
+                estruturas de dados e a interface com o navegador.
+            </p>
+
+            <p><strong>Etapa 2 — Intermediário (semanas 4–6)</strong></p>
+            <ol class="roteiro" type="1" start="4">
+                <li>
+                    Arrays e objetos
+                    <ol class="sub" type="a">
+                        <li>Criação e iteração de arrays</li>
+                        <li>Propriedades e métodos de objetos</li>
+                    </ol>
+                </li>
+                <li>
+                    DOM e eventos
+                    <ol class="sub" type="a">
+                        <li>Seleção e manipulação de elementos</li>
+                        <li>Adição de event listeners</li>
+                    </ol>
+                </li>
+                <li>
+                    Introdução às APIs REST
+                    <ol class="sub" type="a">
+                        <li>Requisições com <code>fetch</code></li>
+                        <li>Tratamento de JSON</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+
+       
+        <section id="ranking" class="card">
+            <p class="section-label">Seção 2</p>
+            <h2>Ranking de Tecnologias Web</h2>
+            <p>Classificadas da 5ª à 1ª posição em relevância para o curso.</p>
+
+            
+            <ol class="ranking" reversed start="5">
+                <li>
+                    <span class="rank-badge">5</span>
+                    <div class="rank-content">
+                        <strong>TypeScript</strong>
+                        <p>Superset tipado do JavaScript que melhora a manutenibilidade em projetos grandes,
+                            reduzindo erros em tempo de desenvolvimento.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="rank-badge">4</span>
+                    <div class="rank-content">
+                        <strong>CSS3 &amp; Design Responsivo</strong>
+                        <p>Além de estilização, o CSS moderno inclui variáveis, grid, flexbox e
+                            media queries, ferramentas essenciais para qualquer desenvolvedor front-end.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="rank-badge">3</span>
+                    <div class="rank-content">
+                        <strong>Git &amp; GitHub</strong>
+                        <p>Controle de versão é uma habilidade transversal — nenhum projeto profissional
+                            prescinde de versionamento, histórico e colaboração via pull requests.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="rank-badge">2</span>
+                    <div class="rank-content">
+                        <strong>JavaScript</strong>
+                        <p>Única linguagem nativa dos navegadores, domina tanto o front-end quanto
+                            o back-end (Node.js). Compreendê-la em profundidade abre praticamente
+                            todo o ecossistema web.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="rank-badge">1</span>
+                    <div class="rank-content">
+                        <strong>HTML5 Semântico</strong>
+                        <p>A base de tudo na Web. Sem estrutura semântica sólida, acessibilidade, SEO
+                            e manutenibilidade ficam comprometidos — independente de qual framework ou
+                            linguagem se use por cima.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+   
+        <section id="glossario" class="card">
+            <p class="section-label">Seção 3</p>
+            <h2>Glossário de Termos Técnicos</h2>
+
+        
+            <dl class="glossary">
+
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language — linguagem de marcação padrão para estruturar conteúdo na Web.</dd>
+                <dd>Define elementos como parágrafos, títulos, listas, tabelas e formulários por meio de tags.</dd>
+
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets — linguagem responsável pela apresentação visual de documentos HTML.</dd>
+                <dd>Controla cores, tipografia, espaçamento, animações e layout responsivo.</dd>
+
+                <dt>JavaScript</dt>
+                <dd>Linguagem de programação interpretada, orientada a eventos, que adiciona interatividade e lógica às
+                    páginas web.</dd>
+
+                <dt>URL</dt>
+                <dt>URI</dt>
+                <dd>Identificador que localiza um recurso na Internet, composto por protocolo, domínio, caminho e
+                    parâmetros opcionais.</dd>
+
+             
+                <dt>DOM</dt>
+                <dt>Document Object Model</dt>
+                <dd>Representação em árvore de objetos de um documento HTML ou XML, manipulável via JavaScript para
+                    alterar conteúdo e estrutura dinamicamente.</dd>
+
+                <dt>API</dt>
+                <dd>Application Programming Interface — conjunto de definições e protocolos que permite que sistemas se
+                    comuniquem entre si.</dd>
+
+                <dt>HTTP</dt>
+                <dd>HyperText Transfer Protocol — protocolo de comunicação base da Web, responsável pela transferência
+                    de dados entre clientes e servidores.</dd>
+
+                <dt>DNS</dt>
+                <dd>Domain Name System — sistema que traduz nomes de domínio legíveis por humanos (ex.: ifal.edu.br) em
+                    endereços IP numéricos.</dd>
+
+            </dl>
+        </section>
+
+  
+        <section id="mapa" class="card">
+            <p class="section-label">Seção 4</p>
+            <h2>Mapa de Tecnologias Web</h2>
+
+       
+            <ul class="tree">
+                <li>
+                    <strong>Desenvolvimento Web</strong>
+                    <ul>
+                        <li>
+                            <span class="cat">Frontend</span>
+                            <ul>
+                                <li>
+                                    Linguagens
+                                    <ul>
+                                        <li>HTML</li>
+                                        <li>CSS</li>
+                                        <li>JavaScript</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Frameworks
+                                    <ul>
+                                        <li>React</li>
+                                        <li>Vue.js</li>
+                                        <li>Angular</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="cat">Backend</span>
+                            <ul>
+                                <li>
+                                    Linguagens
+                                    <ul>
+                                        <li>Python</li>
+                                        <li>Java</li>
+                                        <li>Node.js</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Bancos de Dados
+                                    <ul>
+                                        <li>MySQL</li>
+                                        <li>PostgreSQL</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <a class="back-link" href="../index.html">&#8592; Voltar à página principal</a>
+    </main>
+
+    <footer>
+        <p>Cap. 4 / Ativ. 3 &mdash; Emily Cecilia Souza da Silva &mdash; IFAL &mdash; 2025</p>
+    </footer>
+
+</body>
+
+</html>

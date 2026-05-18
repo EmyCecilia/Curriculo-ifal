@@ -1,0 +1,404 @@
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    background-color: #f9f5fb;
+    color: #4a2f52;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background-color: #3b2240;
+    padding: 2rem 2.5rem;
+    color: #e8d6ec;
+}
+
+header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: .5rem;
+}
+
+header a {
+    color: #c9a8d1;
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: .06em;
+}
+
+header a:hover {
+    color: #fff;
+}
+
+main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+section {
+    background: #fff;
+    border: 1px solid #dccfe0;
+    border-radius: 8px;
+    padding: 2rem 2.2rem;
+    box-shadow: 0 2px 12px rgba(59, 34, 64, .06);
+}
+
+section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: #3b2240;
+    margin-bottom: .5rem;
+}
+
+section .desc {
+    font-size: .85rem;
+    color: #8a6b90;
+    margin-bottom: 1.2rem;
+}
+
+code {
+    background: #f0eaf4;
+    border: 1px solid #dccfe0;
+    border-radius: 3px;
+    padding: .1em .4em;
+    font-size: .85em;
+    font-family: 'Courier New', monospace;
+    color: #3b2240;
+}
+
+/* ══════════════════════════════════════════════
+   SEÇÃO 1 — SELETORES DE ATRIBUTO
+   ══════════════════════════════════════════════ */
+
+#sec-atributo ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+#sec-atributo ul li a {
+    display: inline-block;
+    font-weight: 500;
+    text-decoration: none;
+    padding: .3rem .6rem;
+    border-radius: 4px;
+    transition: opacity .2s;
+}
+
+#sec-atributo ul li a:hover {
+    opacity: .75;
+}
+
+a[href^="https"] {
+    color: #2d6a3f;
+    background-color: #d4edda;
+    border: 1px solid #b2dfcc;
+}
+
+a[href^="http:"] {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+}
+
+a[href^="http:"]::after {
+    content: " ⚠";
+    font-style: normal;
+}
+
+a[href$=".pdf"] {
+    color: #7a4a00;
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+a[href$=".pdf"]::after {
+    content: " [PDF]";
+    font-size: .8em;
+    font-weight: 600;
+}
+
+a[href^="#"] {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    font-style: italic;
+}
+
+a[target="_blank"]::after {
+    content: " ↗";
+    font-size: .9em;
+}
+
+
+/* ══════════════════════════════════════════════
+   SEÇÃO 2 — PSEUDO-CLASSES ESTRUTURAIS
+   ══════════════════════════════════════════════ */
+
+#sec-estrutural ol {
+    padding-left: 1.4rem;
+}
+
+#sec-estrutural ol li {
+    padding: .45rem .8rem;
+    border-radius: 4px;
+    transition: background .15s;
+}
+
+#sec-estrutural ol li:first-child {
+    font-weight: bold;
+    color: #3b2240;
+}
+
+#sec-estrutural ol li:last-child {
+    color: #A47DAB;
+    font-style: italic;
+}
+
+#sec-estrutural ol li:nth-child(even) {
+    background-color: #f0eaf4;
+}
+
+#sec-estrutural ol li:nth-child(odd) {
+    background-color: #faf7fc;
+}
+
+#sec-estrutural ol li:nth-child(3) {
+    border-left: 4px solid #A47DAB;
+    padding-left: .6rem;
+    font-weight: 600;
+}
+
+
+/* ══════════════════════════════════════════════
+   SEÇÃO 3 — PSEUDO-CLASSES DE ESTADO
+   ══════════════════════════════════════════════ */
+
+#sec-estado form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 420px;
+}
+
+#sec-estado label {
+    font-size: .84rem;
+    font-weight: 600;
+    color: #3b2240;
+    margin-top: .5rem;
+}
+
+#sec-estado input[type="text"],
+#sec-estado input[type="email"] {
+    padding: .55rem .85rem;
+    font-family: inherit;
+    font-size: .9rem;
+    border: 1px solid #dccfe0;
+    border-radius: 4px;
+    outline: none;
+    background-color: #faf7fc;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+#sec-estado input:focus {
+    border-color: #A47DAB;
+    box-shadow: 0 0 0 3px rgba(164, 125, 171, .25);
+    outline-offset: 2px;
+}
+
+#sec-estado input:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: #ced4da;
+}
+
+#sec-estado input:required {
+    border-left: 3px solid #A47DAB;
+}
+
+#sec-estado input:valid {
+    border-color: #28a745;
+}
+
+#sec-estado input:invalid {
+    border-color: #dc3545;
+}
+
+#sec-estado input[type="checkbox"]:checked+span {
+    font-weight: bold;
+    color: #3b2240;
+}
+
+.label-check {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 400 !important;
+    cursor: pointer;
+    margin-top: .3rem;
+}
+
+.label-check input {
+    width: 16px;
+    height: 16px;
+    accent-color: #A47DAB;
+}
+
+#sec-estado button {
+    margin-top: .5rem;
+    padding: .6rem 1.4rem;
+    background-color: #A47DAB;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+    align-self: flex-start;
+}
+
+#sec-estado button:hover {
+    background-color: #3b2240;
+}
+
+
+/* ══════════════════════════════════════════════
+   SEÇÃO 4 — PSEUDO-ELEMENTOS
+   ══════════════════════════════════════════════ */
+
+
+.citacao {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #4a2f52;
+    padding: .5rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+.citacao::before {
+    content: "\201C";
+    font-size: 2.5rem;
+    color: #A47DAB;
+    line-height: 0;
+    vertical-align: -.55rem;
+    margin-right: .15rem;
+}
+
+.citacao::after {
+    content: "\201D";
+    font-size: 2.5rem;
+    color: #A47DAB;
+    line-height: 0;
+    vertical-align: -.55rem;
+    margin-left: .15rem;
+}
+
+.obrigatorio::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+::selection {
+    background-color: #c9a8d1;
+    color: #3b2240;
+}
+
+.input-custom {
+    padding: .6rem .9rem;
+    border: 1px solid #dccfe0;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: .9rem;
+    outline: none;
+    background-color: #faf7fc;
+    margin-top: .8rem;
+    width: 100%;
+    max-width: 320px;
+}
+
+.input-custom::placeholder {
+    color: #A47DAB;
+    font-style: italic;
+}
+
+
+/* ══════════════════════════════════════════════
+   SEÇÃO 5 — COMBINADORES E :not()
+   ══════════════════════════════════════════════ */
+
+#sec-combinadores h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: #3b2240;
+    margin-bottom: .3rem;
+    margin-top: .5rem;
+}
+
+#sec-combinadores p {
+    color: #4a2f52;
+    margin-bottom: .5rem;
+    font-size: .92rem;
+}
+
+#sec-combinadores h3+p {
+    font-size: 1.05rem;
+    color: #A47DAB;
+    font-weight: 500;
+    border-left: 3px solid #c9a8d1;
+    padding-left: .8rem;
+}
+
+#sec-combinadores ul {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+#sec-combinadores ul li {
+    padding: .4rem .8rem;
+    border-radius: 4px;
+    font-size: .9rem;
+}
+
+#sec-combinadores ul li:not(.ativo) {
+    opacity: .45;
+    font-style: italic;
+    color: #8a6b90;
+}
+
+#sec-combinadores ul li.ativo {
+    font-weight: bold;
+    color: #3b2240;
+    background-color: #f0eaf4;
+}
+
+#sec-combinadores ul li.ativo::before {
+    content: "✔ ";
+    color: #A47DAB;
+}

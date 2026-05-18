@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PWEB1 — Cap. 05 — AT04 — Inscrição em Evento</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f9f5fb; --ink: #3b2240; --primary: #A47DAB; --accent: #c9a8d1;
+      --highlight: #e8d6ec; --text-body: #4a2f52; --muted: #8a6b90;
+      --card: #ffffff; --border: #dccfe0;
+      --radius: 6px; --shadow: 0 2px 12px rgba(59,34,64,.07); --transition: .2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif; background: var(--bg);
+      color: var(--text-body); min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+
+    .page-header { background: var(--ink); padding: 2.5rem 2rem 2rem; }
+    .page-header p.breadcrumb {
+      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .6rem;
+    }
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem); color: #fff; line-height: 1.15;
+    }
+    .page-header h1 span { color: var(--accent); font-style: italic; }
+    .event-badge {
+      display: inline-block; background: var(--primary); color: #fff;
+      font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: .25rem .8rem; border-radius: 20px;
+      margin-top: .8rem;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      color: var(--accent); text-decoration: none; font-size: .78rem;
+      font-weight: 500; margin-top: .7rem; letter-spacing: .06em;
+      transition: color var(--transition); display: block;
+    }
+    .back-link:hover { color: #fff; }
+
+    main { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+    .required-note { font-size: .8rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .required-note span { color: var(--primary); font-weight: 700; }
+
+    /* ── FIELDSET ── */
+    fieldset {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem 2rem;
+      box-shadow: var(--shadow); margin-bottom: 1.8rem;
+    }
+    legend {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--ink); padding: 0 .6rem;
+    }
+
+    /* ── FIELD ── */
+    .field { display: flex; flex-direction: column; gap: .38rem; margin-top: 1.2rem; }
+    label { font-size: .84rem; font-weight: 600; color: var(--ink); }
+    .req { color: var(--primary); margin-left: .1rem; }
+
+    /* Helper text */
+    small {
+      font-size: .78rem; color: var(--muted); line-height: 1.4; margin-top: .1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="datetime-local"],
+    input[type="file"],
+    select[multiple] {
+      width: 100%; padding: .65rem .9rem;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      color: var(--text-body); background: var(--bg);
+      border: 1px solid var(--border); border-radius: 4px; outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(164,125,171,.2);
+    }
+
+    /* File input */
+    input[type="file"] {
+      padding: .5rem .9rem; cursor: pointer; font-size: .85rem;
+    }
+
+    /* ── RANGE ── */
+    .range-wrapper {
+      display: flex; align-items: center; gap: 1rem; margin-top: .5rem;
+    }
+    input[type="range"] {
+      flex: 1; accent-color: var(--primary); cursor: pointer; height: 4px;
+    }
+    .range-display {
+      background: var(--ink); color: var(--accent);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      min-width: 2.4rem; text-align: center;
+      padding: .25rem .5rem; border-radius: 4px;
+    }
+
+    /* ── COLOR ── */
+    .color-row {
+      display: flex; align-items: center; gap: 1rem; margin-top: .5rem;
+    }
+    input[type="color"] {
+      width: 48px; height: 40px; padding: 2px; cursor: pointer;
+      border: 1px solid var(--border); border-radius: 4px; background: var(--bg);
+    }
+    .color-label-text { font-size: .85rem; color: var(--muted); }
+
+    /* ── SELECT MULTIPLE ── */
+    select[multiple] {
+      padding: .5rem; font-size: .88rem;
+      background: var(--bg);
+    }
+    select[multiple] option { padding: .35rem .6rem; border-radius: 3px; }
+
+    /* ── BUTTON ── */
+    .btn-submit {
+      display: inline-block; background: var(--primary); color: #fff;
+      border: none; border-radius: 4px; padding: .8rem 2rem;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      font-weight: 600; letter-spacing: .04em; cursor: pointer; margin-top: .6rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-submit:hover, .btn-submit:focus-visible {
+      background: var(--ink); transform: translateY(-2px); outline: none;
+    }
+
+    .page-footer {
+      background: var(--ink); color: var(--muted);
+      text-align: center; padding: 1.5rem 1rem; font-size: .78rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <p class="breadcrumb">Cap. 5 &mdash; Atividade 04</p>
+    <h1>Inscrição no <span>Evento</span></h1>
+    <span class="event-badge">Semana de Tecnologia IFAL 2026</span>
+    <a class="back-link" href="../index.html">&#8592; Voltar para a página principal</a>
+  </header>
+
+  <main>
+    <p class="required-note"><span>*</span> Campos obrigatórios</p>
+
+    
+    <form
+      action="https://httpbin.org/post"
+      method="post"
+      enctype="multipart/form-data">
+
+      <input type="hidden" name="edicao" value="2026" />
+
+      <fieldset>
+        <legend>Identificação do Participante</legend>
+
+        <div class="field">
+          <label for="nome">Nome completo <span class="req">*</span></label>
+          <input
+            type="text" id="nome" name="nome"
+            autocomplete="name"
+            placeholder="Ex.: Gabriela Rocha Nunes"
+            aria-required="true"
+            required />
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail institucional <span class="req">*</span></label>
+          <input
+            type="email" id="email" name="email"
+            autocomplete="email"
+            placeholder="Ex.: gabriela@ifal.edu.br"
+            aria-required="true"
+            required />
+        </div>
+
+        <div class="field">
+          <label for="cidade">Cidade de origem <span class="req">*</span></label>
+          
+          <input
+            type="text" id="cidade" name="cidade"
+            list="cidades-al"
+            placeholder="Digite ou selecione sua cidade"
+            autocomplete="address-level2"
+            aria-required="true"
+            required />
+          <datalist id="cidades-al">
+            <option value="Maceió">
+            <option value="Arapiraca">
+            <option value="Palmeira dos Índios">
+            <option value="Rio Largo">
+            <option value="Penedo">
+            <option value="União dos Palmares">
+            <option value="São Miguel dos Campos">
+            <option value="Delmiro Gouveia">
+            <option value="Coruripe">
+            <option value="Marechal Deodoro">
+          </datalist>
+        </div>
+
+        <div class="field">
+          <label for="foto">Foto para crachá</label>
+          
+          <input
+            type="file" id="foto" name="foto"
+            accept="image/jpeg,image/png"
+            aria-describedby="foto-help" />
+          <small id="foto-help">Formatos aceitos: JPG e PNG. Tamanho máximo: 2 MB.</small>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Preferências para o Evento</legend>
+
+        <div class="field">
+          <label for="chegada">Data e hora preferida para chegada</label>
+          <input
+            type="datetime-local" id="chegada" name="chegada"
+            aria-describedby="chegada-help" />
+          <small id="chegada-help">Credenciamento abre às 08h00 do primeiro dia.</small>
+        </div>
+
+        <div class="field">
+          
+          <label for="experiencia">
+            Nível de experiência em programação:
+            <span id="valor-experiencia" aria-live="polite">5</span>/10
+          </label>
+          <div class="range-wrapper">
+            <input
+              type="range"
+              id="experiencia"
+              name="experiencia"
+              min="0" max="10" step="1" value="5"
+              aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"
+              oninput="
+                document.getElementById('valor-experiencia').textContent = this.value;
+                this.setAttribute('aria-valuenow', this.value);
+              " />
+            <span class="range-display" aria-hidden="true" id="range-badge">5</span>
+          </div>
+        </div>
+
+       
+        <div class="field">
+          <label for="oficinas">Oficinas de interesse</label>
+         
+          <select
+            id="oficinas"
+            name="oficinas[]"
+            multiple
+            size="4"
+            aria-describedby="oficinas-help">
+            <option value="web">Desenvolvimento Web com HTML5 e CSS3</option>
+            <option value="react">Programação WEB</option>
+            <option value="bd">Banco de Dados com PostgreSQL</option>
+            <option value="ia">Inteligência Artificial Aplicada</option>
+            <option value="seg">Segurança da Informação e LGPD</option>
+            <option value="devops">DevOps e CI/CD na Prática</option>
+            <option value="mobile">Desenvolvimento Mobile com react</option>
+          </select>
+        
+        </div>
+      </fieldset>
+
+      <button class="btn-submit" type="submit">Confirmar inscrição</button>
+
+    </form>
+  </main>
+
+  <footer class="page-footer">
+    <p>Cap. 5 / AT04 &mdash; Emily Cecilia Souza da Silva &mdash; IFAL &mdash; 2025</p>
+  </footer>
+
+  <script>
+    const range = document.getElementById('experiencia');
+    const badge = document.getElementById('range-badge');
+    range.addEventListener('input', () => { badge.textContent = range.value; });
+  </script>
+
+</body>
+</html>

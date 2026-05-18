@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWEB1 — Cap. 07 — AT04 — Posicionamento CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="at04.css" />
+</head>
+
+<body id="topo">
+                <header>
+                    <h1>Pagina de Posicionamento </h1>
+                    <p><a href="../index.html">&#8592; Voltar para a página principal</a></p>
+                </header>
+
+    <nav class="nav-fixa" aria-label="Navegação fixa">
+        <span class="nav-logo">PWEB1 — AT04</span>
+        <ul class="nav-links">
+            <li><a href="#sec-intro">Intro</a></li>
+            <li><a href="#sec-ia">IA</a></li>
+            <li><a href="#sec-web">Web</a></li>
+            <li><a href="#sec-etica">Ética</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="sec-intro" class="secao">
+            <h2 class="titulo-sticky">Introdução</h2>
+            <div class="conteudo-secao">
+                <p>
+                    A transformação digital acelerada pelos avanços em Inteligência Artificial está
+                    redefinindo as fronteiras entre o que é humano e o que é automatizável. Neste
+                    artigo, exploramos as principais tendências tecnológicas que moldarão a próxima
+                    década, com foco especial no impacto sobre os profissionais de Sistemas de
+                    Informação.
+                </p>
+                <p>
+                    As mudanças não são apenas técnicas — envolvem novas formas de colaboração,
+                    novos modelos de negócio e novas responsabilidades éticas para quem constrói
+                    e mantém sistemas digitais. Cada seção a seguir explora um aspecto diferente
+                    dessa transformação.
+                </p>
+
+                <p>
+                    A computação em nuvem, por exemplo, é considerada
+                    <span class="tooltip-container">infraestrutura crítica
+                        <span class="tooltip-texto">Sistemas dos quais outros dependem para funcionar</span>
+                    </span>
+                    para praticamente todas as organizações modernas.
+                </p>
+
+                <p>
+                    O conceito de
+                    <span class="tooltip-container">latência
+                        <span class="tooltip-texto">Tempo de resposta entre uma requisição e sua resposta</span>
+                    </span>
+                    tornou-se fundamental para avaliar a qualidade de serviços digitais.
+                </p>
+            </div>
+        </section>
+
+        <section id="sec-ia" class="secao">
+            <h2 class="titulo-sticky">Inteligência Artificial</h2>
+            <div class="conteudo-secao">
+                <p>
+                    Os modelos de linguagem de grande escala (LLMs) representam o avanço mais
+                    significativo em IA desde as redes neurais convolucionais. Sua capacidade de
+                    gerar texto coerente, traduzir idiomas e escrever código coloca-os no centro
+                    das discussões sobre o futuro do trabalho intelectual.
+                </p>
+                <p>
+                    Para os estudantes de computação, dominar as APIs dessas ferramentas e
+                    compreender suas limitações técnicas — como alucinações, viés de treinamento
+                    e consumo energético — é tão importante quanto saber programar em qualquer
+                    linguagem convencional.
+                </p>
+
+                <article class="cartao-destaque">
+                    <span class="selo">NOVO</span>
+                    <h3>GPT-5 e os Modelos Multimodais</h3>
+                    <p>
+                        A nova geração de modelos de linguagem combina texto, imagem, áudio e
+                        vídeo em uma única arquitetura, ampliando drasticamente os casos de uso
+                        possíveis em aplicações comerciais e acadêmicas.
+                    </p>
+                </article>
+
+                <p>
+                    Outro ponto de atenção é a soberania dos dados. Organizações que adotam
+                    modelos proprietários de terceiros transferem informações sensíveis para
+                    infraestruturas externas. Soluções de IA local — modelos rodando on-premise
+                    — ganham relevância especialmente em setores regulados como saúde e finanças.
+                </p>
+
+                <article class="cartao-destaque">
+                    <span class="selo">DESTAQUE</span>
+                    <h3>IA Generativa no Desenvolvimento de Software</h3>
+                    <p>
+                        Ferramentas como GitHub Copilot e Cursor.ai já integram fluxos de trabalho
+                        de milhões de desenvolvedores, acelerando a escrita de código, a geração
+                        de testes e a documentação automática.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="sec-web" class="secao">
+            <h2 class="titulo-sticky">Desenvolvimento Web</h2>
+            <div class="conteudo-secao">
+                <p>
+                    O ecossistema de desenvolvimento web continua em acelerada evolução. O HTML5
+                    semântico, o CSS moderno com variáveis e funções como <code>clamp()</code>,
+                    e o JavaScript com APIs nativas cada vez mais poderosas reduzem a dependência
+                    de bibliotecas de terceiros para casos de uso comuns.
+                </p>
+                <p>
+                    A ascensão dos Web Components permite encapsulamento de lógica e estilo
+                    diretamente no browser, sem necessidade de frameworks. Ao mesmo tempo,
+                    frameworks como React, Vue e Svelte continuam dominando o mercado de
+                    aplicações de grande escala.
+                </p>
+                <p>
+                    A performance passou a ser tratada como funcionalidade. Core Web Vitals —
+                    métricas de desempenho definidas pelo Google — influenciam diretamente o
+                    ranqueamento em buscas orgânicas, tornando a otimização de carregamento uma
+                    responsabilidade do desenvolvedor tanto quanto a corretude funcional.
+                </p>
+                <p>
+                    O CSS Container Queries, a API de animação Web Animations, e o suporte nativo
+                    a scroll-driven animations no Chrome 115+ abrem novas possibilidades para
+                    interfaces ricas construídas apenas com HTML e CSS — sem JavaScript.
+                </p>
+            </div>
+        </section>
+
+        <section id="sec-etica" class="secao">
+            <h2 class="titulo-sticky">Ética e Regulação</h2>
+            <div class="conteudo-secao">
+                <p>
+                    Com o aumento do poder dos sistemas automatizados, cresce também a
+                    responsabilidade de quem os constrói. O conceito de <em>responsible AI</em>
+                    envolve práticas de design inclusivo, auditabilidade de algoritmos e
+                    transparência nas decisões tomadas por sistemas automatizados.
+                </p>
+                <p>
+                    O <em>AI Act</em> europeu, em vigor desde 2024, classifica sistemas de IA por
+                    nível de risco — de mínimo a inaceitável — e impõe requisitos específicos para
+                    cada categoria. Sistemas de reconhecimento facial em espaços públicos, por
+                    exemplo, foram proibidos em determinados contextos.
+                </p>
+                <p>
+                    No Brasil, a Lei Geral de Proteção de Dados (LGPD) já impõe obrigações sobre
+                    o tratamento de dados pessoais. O projeto de lei de regulamentação da IA
+                    avança no Congresso e deve entrar em vigor nos próximos anos, tornando
+                    indispensável que profissionais de TI compreendam tanto os aspectos técnicos
+                    quanto os jurídicos de seus sistemas.
+                </p>
+                <p>
+                    A diversidade nas equipes de tecnologia também é apontada como fator crítico
+                    para a redução de vieses em sistemas de IA. Algoritmos de triagem de
+                    currículos e sistemas de reconhecimento facial apresentam taxas de erro
+                    sistematicamente maiores para grupos historicamente sub-representados nos
+                    dados de treinamento.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <a class="btn-topo" href="#topo" aria-label="Voltar ao topo da página">&#8679;</a>
+
+</body>
+
+</html>

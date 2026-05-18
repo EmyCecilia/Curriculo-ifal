@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWEB1 — Cap. 05 — AT02 — Cadastro de Usuário</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f9f5fb;
+            --ink: #3b2240;
+            --primary: #A47DAB;
+            --accent: #c9a8d1;
+            --highlight: #e8d6ec;
+            --text-body: #4a2f52;
+            --muted: #8a6b90;
+            --card: #ffffff;
+            --border: #dccfe0;
+            --radius: 6px;
+            --shadow: 0 2px 12px rgba(59, 34, 64, .07);
+            --transition: .2s ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-header {
+            background: var(--ink);
+            padding: 2.5rem 2rem 2rem;
+        }
+
+        .page-header p.breadcrumb {
+            font-size: .72rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .6rem;
+        }
+
+        .page-header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: #fff;
+            line-height: 1.15;
+        }
+
+        .page-header h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: .78rem;
+            font-weight: 500;
+            margin-top: .9rem;
+            letter-spacing: .06em;
+            transition: color var(--transition);
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        main {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-card .section-label {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: .4rem;
+        }
+
+        .form-card h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 1.8rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        label {
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: .02em;
+        }
+
+        label .req {
+            color: var(--primary);
+            margin-left: .1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: .65rem .9rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .92rem;
+            color: var(--text-body);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(164, 125, 171, .2);
+        }
+
+        fieldset {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        legend {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--ink);
+            padding: 0 .5rem;
+            letter-spacing: .04em;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem 1.4rem;
+            margin-top: .8rem;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 400;
+            cursor: pointer;
+            font-size: .88rem;
+            color: var(--text-body);
+        }
+
+        input[type="radio"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-field {
+            display: flex;
+            align-items: flex-start;
+            gap: .7rem;
+            margin-bottom: 1.4rem;
+            padding: 1rem 1.2rem;
+            background: var(--highlight);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius);
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+            margin-top: .1rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-field label {
+            font-size: .87rem;
+            font-weight: 400;
+            color: var(--text-body);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .checkbox-field label strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: .6rem;
+        }
+
+        .btn-submit,
+        .btn-reset {
+            padding: .72rem 1.6rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-submit:hover,
+        .btn-submit:focus-visible {
+            background: var(--ink);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-reset:hover,
+        .btn-reset:focus-visible {
+            background: var(--highlight);
+            outline: none;
+        }
+
+        .page-footer {
+            background: var(--ink);
+            color: var(--muted);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: .78rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <p class="breadcrumb">Cap. 5 &mdash; Atividade 02</p>
+        <h1>Cadastro de <span>Usuário</span></h1>
+        <a class="back-link" href="../index.html">&#8592; Voltar para a página principal</a>
+    </header>
+
+    <main>
+        <div class="form-card">
+            <p class="section-label">Crie sua conta</p>
+            <h2>Novo Cadastro</h2>
+
+   
+    
+            <form action="https://httpbin.org/post" method="post">
+
+                <div class="field">
+                    <label for="nome">Nome completo <span class="req">*</span></label>
+                    <input type="text" id="nome" name="nome" autocomplete="name"
+                        placeholder="Ex.: Carlos Eduardo Santos" required minlength="3" />
+                </div>
+
+                <div class="field">
+                    <label for="email">E-mail <span class="req">*</span></label>
+                    <input type="email" id="email" name="email" autocomplete="email"
+                        placeholder="Ex.: carlos@exemplo.com" required />
+                </div>
+
+                <div class="field">
+                    <label for="senha">Senha <span class="req">*</span></label>
+                    <input type="password" id="senha" name="senha" autocomplete="new-password"
+                        placeholder="Mínimo 8 caracteres" required minlength="8" />
+                </div>
+
+                <div class="field">
+                    <label for="nascimento">Data de nascimento <span class="req">*</span></label>
+                    <input type="date" id="nascimento" name="nascimento" autocomplete="bday" required />
+                </div>
+
+            
+                <fieldset>
+                    <legend>Gênero</legend>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="genero" value="masculino" />
+                            Masculino
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="feminino" />
+                            Feminino
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="outro" />
+                            Outro
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="prefiro_nao_informar" />
+                            Prefiro não informar
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="checkbox-field">
+                    <input type="checkbox" id="aceite" name="aceite" value="sim" required />
+                    <label for="aceite">
+                        Li e concordo com os <strong>Termos de Uso</strong> e a
+                        <strong>Política de Privacidade</strong>. <span class="req">*</span>
+                    </label>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn-submit" type="submit">Criar conta</button>
+                    <button class="btn-reset" type="reset">Limpar campos</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>Cap. 5 / AT02 &mdash; Emily Cecilia Souza da Silva &mdash; IFAL &mdash; 2025</p>
+    </footer>
+
+</body>
+
+</html>
