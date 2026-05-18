@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWEB1 — Cap. 07 — AT01 — Cartão de Apresentação</title>
+    <style>
+    
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background-color: #3b2240;
+            color: #3b2240;
+            text-align: center;
+            padding: 4rem 1rem;
+            min-height: 100vh;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        header a {
+            display: inline-block;
+            margin-top: .6rem;
+            color: #A47DAB;
+            font-size: .85rem;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+      
+        .cartao {
+            display: inline-block;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 4px 24px rgba(59, 34, 64, .12);
+            max-width: 420px;
+            width: 100%;
+            text-align: left;
+        }
+
+       
+        .cartao-nome {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #3b2240;
+            line-height: 1.2;
+            margin-bottom: .6rem;
+        }
+
+        
+        .cartao-divisor {
+            border: none;
+            border-top: 2px dashed #c9a8d1;
+            margin: 1rem 0;
+        }
+
+     
+        .cartao-cargo {
+            font-style: italic;
+            color: #A47DAB;
+            font-size: 1rem;
+            margin-bottom: .8rem;
+            line-height: 1.5;
+        }
+
+     
+        .cartao-email {
+            font-size: .88rem;
+            color: #8a6b90;
+            word-break: break-all;
+        }
+
+     
+        main {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Cap. 07 — AT01 — Cartão de Apresentação</h1>
+        <a href="../index.html">&#8592; Voltar para a página principal</a>
+    </header>
+
+    <main>
+        <article class="cartao">
+            <h1 class="cartao-nome">Emily Cecilia Souza da Silva</h1>
+
+            <hr class="cartao-divisor" />
+
+            <p class="cartao-cargo">Estudante de Sistemas de Informação — IFAL<br>3º Período &mdash; Maceió, AL</p>
+
+            <p class="cartao-email">ecss4@.ifal.edu.br</p>
+        </article>
+    </main>
+
+</body>
+
+</html>
